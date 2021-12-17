@@ -1,0 +1,119 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>@ViewData["Title"]</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
+    <link rel="stylesheet" href="~/ReviewsCars.Web.styles.css" asp-append-version="true"/>
+</head>
+<body>
+<div class="min-h-full">
+    <nav class="bg-gray-800 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between lg:h-16">
+                <div class="flex items-center">
+                    <div class="hidden md:block">
+                        <div class="ml-10 flex items-baseline space-x-4">
+                            <a class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                               asp-controller="Home"
+                               asp-action="Index">
+                                Главная
+                            </a>
+
+                            <a class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                               asp-controller="PostsCar" asp-action="Index">
+                                Отзывы
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="flex items-center">
+                    <div class="hidden md:block">
+                        <div class="ml-10 flex items-baseline space-x-4">
+                            @if (User.Identity!.IsAuthenticated)
+                            {
+                                <a class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                                   asp-controller="Account" asp-action="Index">
+                                    Профиль
+                                </a>
+                                <a class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                                   asp-controller="Account" asp-action="Logout">
+                                    Выйти
+                                </a>
+                            }
+                            else
+                            {
+                                <a class="text-gray-300 hover:border-2 hover:border-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                                   asp-controller="Account" asp-action="Login">
+                                    Войти
+                                </a>
+                                <a class="text-gray-300 bg-indigo-600 hover:bg-indigo-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                                   asp-controller="Account" asp-action="Register">
+                                    Зарегистрироватся
+                                </a>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="md:hidden" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                   asp-controller="Home" asp-action="Index">
+                    Главная
+                </a>
+
+                <a class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                   asp-controller="PostsCar" asp-action="Index">
+                    Отзывы
+                </a>
+                
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <a class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                       asp-controller="Account" asp-action="Index">
+                        Профиль
+                    </a>
+
+                    <a class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                       asp-controller="Account" asp-action="Logout">
+                        Выйти
+                    </a>
+                }
+
+                <div class="flex justify-center">
+
+                    @if (!User.Identity.IsAuthenticated)
+                    {
+                        <a class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                           asp-controller="Account" asp-action="Login">
+                            Войти
+                        </a>
+
+                        <a class="text-gray-300 hover:bg-gray-700 hover:bg-indigo-700 block px-3 py-2 rounded-md text-base font-medium"
+                           asp-controller="Account" asp-action="Register">
+                            Зарегистрироватся
+                        </a>
+                    }
+                </div>
+            </div>
+        </div>
+    </nav>
+    <header class="bg-white shadow">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            @await RenderSectionAsync("DashBoard", false)
+        </div>
+    </header>
+    <main class="max-w-6xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+        @RenderBody()
+    </main>
+</div>
+<script src="~/js/site.js" asp-append-version="true"></script>
+@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

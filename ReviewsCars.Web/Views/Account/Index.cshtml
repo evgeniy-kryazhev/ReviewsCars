@@ -1,0 +1,51 @@
+﻿@model UserViewModel
+@{
+    ViewData["Title"] = "Профиль";
+}
+
+<div class="mt-5 sm:mt-0">
+    <form method="POST">
+        <div class="bg-white rounded-lg shadow">
+            <div class="px-5 pb-5">
+                <input placeholder="Имя пользователя"
+                       asp-for="User.UserName"
+                       class="text-black placeholder-gray-600 w-full px-4 py-2.5 mt-2 text-base transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200 ring-offset-current ring-offset-2 ring-gray-400">
+                <input placeholder="Email" 
+                       asp-for="User.Email"
+                       class=" text-black placeholder-gray-600 w-full px-4 py-2.5 mt-2 text-base transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200 ring-offset-current ring-offset-2 ring-gray-400">
+            </div>
+            <hr class="mt-4">
+            <div class="flex sm:flex-col lg:flex-row-reverse p-3">
+                <div class="flex-initial">
+                    <button type="submit" 
+                            class="sm:w-full justify-center flex items-center px-5 py-2.5 font-medium tracking-wide text-white capitalize rounded-md bg-indigo-600 hover:bg-indigo-700 transition duration-300 transform active:scale-95 ease-in-out">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#FFFFFF">
+                            <path d="M0 0h24v24H0V0z" fill="none"></path>
+                            <path d="M5 5v14h14V7.83L16.17 5H5zm7 13c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm3-8H6V6h9v4z" opacity=".3"></path>
+                            <path d="M17 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V7l-4-4zm2 16H5V5h11.17L19 7.83V19zm-7-7c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3zM6 6h9v4H6z"></path>
+                        </svg>
+                        <span class="pl-2 mx-1">Сохранить</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<hr class="mb-4">
+<h1 class="text-2xl mb-5">Мои отзывы</h1>
+@foreach (var post in Model!.PostCars!)
+{
+    <a class="flex flex-col bg-white border rounded-lg shadow-lg md:flex-row hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 mb-3"
+       asp-controller="PostsCar" asp-action="Details" asp-route-id="@post.Id">
+
+        @if (post.ImageUrl != null)
+        {
+            <img class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-l-lg" src="@post.ImageUrl" alt="">
+        }
+
+        <div class="w-full flex flex-row justify-between p-4">
+            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">@post.Name</h5>
+        </div>
+    </a>
+}
