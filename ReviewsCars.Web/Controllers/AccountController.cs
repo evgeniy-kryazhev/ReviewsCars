@@ -26,7 +26,7 @@ public class AccountController : Controller
     public async Task<ActionResult<UserViewModel>> Index()
     {
         var user = await _userManager.GetUserAsync(HttpContext.User);
-        var posts = await _context.PostCars
+        var posts = await _context.CarReviews
             .Include(p => p.User)
             .Where(p => p.User!.Id == user.Id)
             .ToListAsync();
@@ -54,7 +54,7 @@ public class AccountController : Controller
     public async Task<ActionResult<UserViewModel>> Profile(Guid id)
     {
         var user = await _userManager.FindByIdAsync(id.ToString());
-        var posts = await _context.PostCars
+        var posts = await _context.CarReviews
             .Include(p => p.User)
             .Where(p => p.User!.Id == user.Id)
             .ToListAsync();
@@ -87,7 +87,7 @@ public class AccountController : Controller
                     return Redirect(loginViewModel.ReturnUrl);
                 }
 
-                return RedirectToAction("Index", "PostsCar");
+                return RedirectToAction("Index", "CarReview");
             }
 
             if (user == null)

@@ -37,7 +37,7 @@
 @foreach (var post in Model!.PostCars!)
 {
     <a class="flex flex-col bg-white border rounded-lg shadow-lg md:flex-row hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 mb-3"
-       asp-controller="PostsCar" asp-action="Details" asp-route-id="@post.Id">
+       asp-controller="CarReview" asp-action="Details" asp-route-id="@post.Id">
 
         @if (post.ImageUrl != null)
         {

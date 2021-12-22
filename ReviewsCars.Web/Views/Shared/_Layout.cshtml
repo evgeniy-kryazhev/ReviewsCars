@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>@ViewData["Title"]</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="~/css/output.css">
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
     <link rel="stylesheet" href="~/ReviewsCars.Web.styles.css" asp-append-version="true"/>
 </head>
@@ -23,7 +23,7 @@
                             </a>
 
                             <a class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                               asp-controller="PostsCar" asp-action="Index">
+                               asp-controller="CarReview" asp-action="Index">
                                 Отзывы
                             </a>
 
@@ -69,7 +69,7 @@
                 </a>
 
                 <a class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-                   asp-controller="PostsCar" asp-action="Index">
+                   asp-controller="CarReview" asp-action="Index">
                     Отзывы
                 </a>
                 
@@ -104,7 +104,7 @@
             </div>
         </div>
     </nav>
-    <header class="bg-white shadow">
+    <header class="bg-white">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             @await RenderSectionAsync("DashBoard", false)
         </div>
